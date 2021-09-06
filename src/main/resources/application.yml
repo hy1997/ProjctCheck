@@ -1,0 +1,29 @@
+server:
+  port: 8080
+spring:
+  freemarker:
+    charset: utf-8
+    suffix: .ftl
+    template-loader-path: classpath:/templates
+    cache: false
+  datasource:
+    url: jdbc:mysql://172.16.60.113:3306/jy_seismic?characterEncoding=utf8&nullCatalogMeansCurrent=true&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    password: dev123456
+    username: js_root
+#??sql
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+environment:
+  url: http://iot.whszjt.cn/allCurl
+  historicalAirQuality: "{\"data\":{\"projectId\":\"%s\",\"dayNum\":\"30\"},\"method\":\"post\",\"type\":\"iot\",\"url\":\"enviromentalmonitoring/historicalAirQuality\"}"
+  getAll: "{\"data\":{\"projectId\":\"%s\",\"monitoringDate\":\"%s\"},\"method\":\"post\",\"type\":\"iot\",\"url\":\"enviromentalmonitoring/getAll\"}"
+
+
+realname:
+  personGoInTodayList: "{\"data\":{\"projectDate\":\"%s\",\"projectId\":\"%s\"},\"method\":\"post\",\"type\":\"iot\",\"url\":\"projectScreen/realNameAttendance/personGoInTodayList\"}"
+  todayTeamAttendance: "{\"data\":{\"projectId\":\"%s\"},\"method\":\"post\",\"type\":\"iot\",\"url\":\"projectScreen/projectDesc/todayTeamAttendance\"}"
+  typeOfWorkStatistics: "{\"data\":{\"projectId\":\"%s\"},\"method\":\"post\",\"type\":\"iot\",\"url\":\"projectScreen/projectDesc/typeOfWorkStatistics\"}"
+  ageDistribution: "{\"data\":{\"projectId\":\"%s\"},\"method\":\"post\",\"type\":\"iot\",\"url\":\"projectScreen/realNameAttendance/ageDistribution\"}"
+  todayAttendance: "{\"data\":{\"projectDate\":\"%s\",\"projectId\":\"%s\"},\"method\":\"post\",\"type\":\"iot\",\"url\":\"projectScreen/realNameAttendance/todayAttendance\"}"

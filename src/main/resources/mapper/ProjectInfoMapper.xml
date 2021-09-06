@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jy.project.mapper.ProjectInfoMapper">
+    <resultMap id="ProjectInfoVOResultMap" type="com.jy.project.vo.ProjectInfoVO" >
+        <result column="id" property="id" />
+        <result column="project_id" property="projectId" />
+        <result column="project_name" property="projectName" />
+        <result column="project_code" property="projectCode" />
+        <result column="video_surveillance_info" property="videoSurveillanceInfo" />
+        <result column="real_name_surveillance_info" property="realNameSurveillanceInfo" />
+        <result column="environment_surveillance_info" property="environmentSurveillanceInfo" />
+        <result column="high_formwork_surveillance_info" property="highFormworkSurveillanceInfo" />
+        <result column="tbm_surveillance_info" property="tbmSurveillanceInfo" />
+        <result column="vehicle_management_info" property="vehicleManagementInfo" />
+        <result column="hydropower_monitoring_info" property="hydropowerMonitoringInfo" />
+        <result column="smoke_detection_info" property="smokeDetectionInfo" />
+        <result column="standard_curingroom_monitoring_info" property="standardCuringroomMonitoringInfo" />
+        <result column="integrator_leader" property="integratorLeader" />
+        <result column="remarks" property="remarks" />
+        <result column="problem_description" property="problemDescription" />
+        <result column="cause" property="cause" />
+        <result column="estimated_repairtime" property="estimatedRepairtime" />
+        <result column="createtime" property="createtime" />
+    </resultMap>
+
+    <select id="list" resultMap="ProjectInfoVOResultMap">
+        SELECT
+        info.*,
+        pro.project_name ,
+        pro.project_code
+        FROM
+        project pro
+        LEFT JOIN projectinfo info ON pro.id = info.project_id
+        <where>
+            info.id is not null
+            <if test ='null != projectName and projectName!=""'>AND  pro.project_name = #{docId}</if>
+            <if test ='null != createtime and createtime!=""'>AND DATE_FORMAT(info.createtime, '%Y-%m-%d') <![CDATA[>=]]> ATE_FORMAT(#{start}, '%Y-%m-%d')</if>
+            <if test ='null != createtime and createtime!=""'>    AND ATE_FORMAT(info.createtime, '%Y-%m-%d')  <![CDATA[<=]]> ATE_FORMAT(#{end}  , '%Y-%m-%d')</if>
+            <if test ='null != projectCode and projectCode!=""'>AND  pro.project_code = #{pushStatus}</if>
+        </where>
+    </select>
+</mapper>
