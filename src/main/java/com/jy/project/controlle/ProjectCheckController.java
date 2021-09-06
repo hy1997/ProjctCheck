@@ -36,13 +36,13 @@ public class ProjectCheckController {
     }
 
     @RequestMapping("projectList")
-    public String projectList(ProjectPO po, Model model) throws Exception {
+    public String projectList(ProjectPO po, Model model){
           model.addAttribute("projects",projectCheckService.projectList(po));
         return "projectList";
     }
 
     @RequestMapping("projectInfoList")
-    public String projectInfoList(ProjectInfoPO po, Model model) throws Exception {
+    public String projectInfoList(ProjectInfoPO po, Model model) {
         model.addAttribute("projectInfos",projectCheckService.projectInfoList(po));
         return "projectInfoList";
     }
